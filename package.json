@@ -1,0 +1,14 @@
+{
+  "name": "pepakurasvgedit",
+  "version": "1.0.0",
+  "description": "Used to convert SVG files from pepakura to use on a cricut",
+  "main": "app.js",
+  "scripts": {
+    "build": "node app.js"
+  },
+  "author": "Logan Fitzgibbons <lfitzgibbons992@gmail.com> (lftiz.com)",
+  "license": "ISC",
+  "devDependencies": {
+    "xml2js": "^0.4.23"
+  }
+}
