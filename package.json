@@ -9,6 +9,7 @@
   "author": "Logan Fitzgibbons <lfitzgibbons992@gmail.com> (lftiz.com)",
   "license": "ISC",
   "devDependencies": {
+    "svg-path-parse": "^1.1.3",
     "xml2js": "^0.4.23"
   }
 }
