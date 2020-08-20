@@ -9,7 +9,8 @@ module.exports.svgBase = JSON.stringify({
     'g': [{
       '$': {
         'id': 'layer1',
-        'stroke-width': '0.02'
+        'stroke-width': '0.5',
+        'transform': 'translate(0, 0)'
       },
       'g': []
     }]

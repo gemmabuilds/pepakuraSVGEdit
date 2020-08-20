@@ -87,7 +87,7 @@ class pepakuraSVG {
 
         this.pageWidth = width / this.widthCount;
         // convert to inches
-        this.pageWidth = this.pageWidth / 24.5;
+        // this.pageWidth = this.pageWidth / 24.5;
 
         let height = parseFloat(heightStr.substr(0, heightStr.length - 2));
         let heightMin = height / LETTER_HEIGHT_MIN;
@@ -101,7 +101,7 @@ class pepakuraSVG {
 
         this.pageHeight = height / this.heightCount;
         // convert to inches
-        this.pageHeight = this.pageHeight / 24.5;
+        // this.pageHeight = this.pageHeight / 24.5;
 
         console.log(`width: ${this.pageWidth} height: ${this.pageHeight}`);
     }
@@ -109,7 +109,8 @@ class pepakuraSVG {
     parsePaths() {
         for (let path of this.svgObject.svg.g[0].path) {
             // console.log(path.$.d);
-            let parsedPath = pathParse(path.$.d).normalize({round: 6, transform: `scale(${1 / 24.5})`});
+            // let parsedPath = pathParse(path.$.d).normalize({round: 6, transform: `scale(${1 / 24.5})`});
+            let parsedPath = pathParse(path.$.d).normalize({});
             path.$.d = serializePath(parsedPath);
             // console.log(serializePath(parsedPath));
             const startX = parsedPath.segments[0].args[0];
@@ -178,8 +179,8 @@ class svgPage {
     generateSVG() {
         this.svgObject = JSON.parse(svgBase);
 
-        this.svgObject.svg.$.width = `${this.pageWidth}in`;
-        this.svgObject.svg.$.height = `${this.pageHeight}in`;
+        this.svgObject.svg.$.width = `${this.pageWidth}mm`;
+        this.svgObject.svg.$.height = `${this.pageHeight}mm`;
 
         this.svgObject.svg.$.viewBox = `0 0 ${this.pageWidth} ${this.pageHeight}`;
 
