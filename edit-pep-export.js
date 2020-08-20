@@ -108,11 +108,8 @@ class pepakuraSVG {
 
     parsePaths() {
         for (let path of this.svgObject.svg.g[0].path) {
-            // console.log(path.$.d);
-            // let parsedPath = pathParse(path.$.d).normalize({round: 6, transform: `scale(${1 / 24.5})`});
             let parsedPath = pathParse(path.$.d).normalize({});
-            path.$.d = serializePath(parsedPath);
-            // console.log(serializePath(parsedPath));
+
             const startX = parsedPath.segments[0].args[0];
             const startY = parsedPath.segments[0].args[1];
 
@@ -120,6 +117,10 @@ class pepakuraSVG {
             const pageY = Math.floor(startY / this.pageHeight);
 
             const pageIndex = pageX + (pageY * this.widthCount);
+
+            // translate path to show up within single page viewBox
+            let toTranslate = pathParse(serializePath(parsedPath)).normalize({transform: `translate(${-pageX * this.pageWidth}, ${-pageY * this.pageHeight})`});
+            path.$.d = serializePath(toTranslate);
 
             if (!this.pages[pageIndex]) {
                 const editedFilename = `${this.filename.substring(0, this.filename.length - 4)}_${pageIndex + 1}.svg`;
