@@ -160,7 +160,7 @@ class svgPage {
         // if the stroke-dasharray is present we know it is a score path
         if (path.$['stroke-dasharray']) {
             // a simple dashed line means this is a mountain fold
-            if (path.$['stroke-dasharray'] === "1, 1, 0") {
+            if (path.$['stroke-dasharray'][0] === "1") {
                 this.mountainGroup.path.push(path);
             // if not a mountain fold, then it is a valley fold
             } else {
